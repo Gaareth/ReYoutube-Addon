@@ -1,0 +1,30 @@
+{
+
+  "manifest_version": 2,
+  "name": "ReYoutube",
+  "version": "0.0",
+
+  "description": "Ree",
+  
+  "icons": {
+    "50": "icons/favicon.png"
+  },
+
+  "permissions": [
+    "storage","tabs","history","http://*/*","https://*/*"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/favicon.png",
+    "default_title": "ReYoutube",
+    "default_popup": "popup/popup.html"
+  }, 
+  
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*", "*://www.youtube.de/*"],
+      "js": ["extension.js"]
+    }
+  ]
+
+} 
