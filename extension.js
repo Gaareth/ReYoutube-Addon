@@ -1,80 +1,70 @@
-console.log("CAAAA")
+// noinspection CssInvalidHtmlTagReference,JSUnresolvedVariable
 
+let executeScript = async () => {
+  console.log("loaded");
 
-function get_comments(video_id) {
-    return fetch("http://localhost:5000/api/comments/get_comments/" + video_id, {method: 'GET'})
-        .then(res => res.json());
-}
+  const commentsDisabled = document.querySelector("ytd-comments > ytd-item-section-renderer > #continuations").children.length === 0;
+  console.log("Comments disabled: " + commentsDisabled);
+  if (commentsDisabled) {
+    return;
+  }
 
+  let res = await fetch("http://localhost:5000/api/comments/get_comments/" + "dQw4w9WgXcQ");
+  let comments = await res.json;
+  console.log(comments);
+  console.log(generateComments(comments));
+  document.querySelector("ytd-comments > ytd-item-section-renderer > #contents").appendChild(generateComments(comments));
 
-window.onload = executeScript()
-
-function executeScript() {
-    console.log("loaded")
-
-    const comments_disabled =
-                    (document.querySelector("ytd-comments > ytd-item-section-renderer > #continuations").children.length <= 0)
-    console.log("Comments disabled: " + comments_disabled)
-    if (!comments_disabled) {
-        return;
-    }
-    get_comments("dQw4w9WgXcQ").then((comments)=>{
-        console.log(comments);
-        console.log(generateComments(comments));
-        document.querySelector("ytd-comments > ytd-item-section-renderer > #contents").appendChild(generateComments(comments));
-
-    });
-
-
-    generateHeader()
+  generateHeader();
 }
 
 
 function generateComments(comments) {
-    var comments_wrapper = document.createElement("div")
-
-    for (var i = 0; i < comments.length; i++) {
-        comment = comments[i];
-        var comment_wrapper = document.createElement("div")
-        var comment_content = document.createElement("p")
-        comment_content.innerHTML = comment["comment"]
-
-        comment_wrapper.appendChild(comment_content)
+  let comments_wrapper = document.createElement("div");
 
 
-        if (comment["replies"].length > 0) {
-            var comment_replies = document.createElement("div");
-            comment_replies.className = "comment-replies";
+  for (let comment of comments) {
+    let comment_wrapper = document.createElement("div");
+    let comment_content = document.createElement("p");
+    comment_content.innerHTML = comment.comment;
 
-            comment_replies.appendChild(generateComments(comment["replies"]))
-
-            comment_wrapper.appendChild(comment_replies)
-        }
+    comment_wrapper.appendChild(comment_content);
 
 
-        comments_wrapper.appendChild(comment_wrapper)
+    if (comment.replies.length > 0) {
+      let comment_replies = document.createElement("div");
+      comment_replies.className = "comment-replies";
+
+      comment_replies.appendChild(generateComments(comment.replies));
+
+      comment_wrapper.appendChild(comment_replies);
     }
 
-    return comments_wrapper;
+    comments_wrapper.appendChild(comment_wrapper);
+  }
+
+  return comments_wrapper;
 }
 
 function generateHeader() {
 
-    let count = document.createElement("h2");
-    count.id = "count";
-    count.className = "style-scope ytd-comments-header-renderer";
-    count.style.color = "white";
+  let count = document.createElement("h2");
+  count.id = "count";
+  count.className = "style-scope ytd-comments-header-renderer";
+  count.style.color = "white";
 
-            let count_content = document.createElement("span");
-            count_content.className = "style-scope yt-formatted-string";
-            count_content.innerHTML = "1337";
+  let count_content = document.createElement("span");
+  count_content.className = "style-scope yt-formatted-string";
+  count_content.innerHTML = "1337";
 
-            let count_content_label = document.createElement("span");
-            count_content_label.className = "style-scope yt-formatted-string";
-            count_content_label.innerHTML = "Comments";
+  let count_content_label = document.createElement("span");
+  count_content_label.className = "style-scope yt-formatted-string";
+  count_content_label.innerHTML = "Comments";
 
-   count.appendChild(count_content);
-   count.appendChild(count_content_label);
+  count.appendChild(count_content);
+  count.appendChild(count_content_label);
 
-   document.querySelector("ytd-comments > ytd-item-section-renderer > #header").appendChild(count);
+  document.querySelector("ytd-comments > ytd-item-section-renderer > #header").appendChild(count);
 }
+
+window.addEventListener("load", executeScript);

@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="popup.css"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+<head>
+    <meta charset="utf-8">
+    <link href="popup.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
 
 <body>
-  <div id="popup-content">
+<div id="popup-content">
 
     <div class="flex-center" style="flex-direction: row; align-items: center;">
-          <img src="/icons/favicon.png" width="32px" height="32px">
-          <h3 style="padding: 0 0.5rem;">ReYoutube</h3>
+        <img height="32px" src="/icons/favicon.png" width="32px">
+        <h3 style="padding: 0 0.5rem;">ReYoutube</h3>
     </div>
 
-    <div id="login-section" class="flex-center">
-      <a style="padding: 10px 30px;" class="btn-grad no_link_decoration" href="http://localhost:5000/login?next_action=extension">
-        Login
-      </a>
+    <div class="flex-center" id="login-section">
+        <a class="btn-grad no_link_decoration" href="http://localhost:5000/login?next_action=extension"
+           style="padding: 10px 30px;">
+            Login
+        </a>
     </div>
 
-    <div id="status-section" style="display: none;" >
+    <div id="status-section" style="display: none;">
 
         <div style="display: flex; justify-content: end; align-items: center;">
 
             <div style="align-items: center;">
-                    <span id="current_username" style="padding-right: .5rem;">{{current_user.username}}</span>
+                <span id="current_username" style="padding-right: .5rem;">{{current_user.username}}</span>
             </div>
 
             <div>
                 <!-- Onerror, in case the youtube profile picture does not load use the fallback-->
-                <img id="current_profile_picture" src="" alt="profile picture" width="32" height="32" class="rounded-circle"
-                    onerror="if (this.src != '/static/images/profile_picture_fallback.jpg') this.src = '/static/images/profile_picture_fallback.jpg';"
-                style="border-radius: 50% !important;">
+                <img alt="profile picture" class="rounded-circle" height="32" id="current_profile_picture" onerror="if (this.src != '/static/images/profile_picture_fallback.jpg'){this.src = '/static/images/profile_picture_fallback.jpg';
+}"
+                     src=""
+                     style="border-radius: 50% !important;"
+                     width="32">
             </div>
 
         </div>
@@ -48,8 +51,8 @@
     </div>
 
 
-  </div>
-  <script src="popup.js"></script>
+</div>
+<script src="popup.js"></script>
 </body>
 
 </html>
