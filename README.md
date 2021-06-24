@@ -4,7 +4,7 @@ Browser extension which adds comments to youtube videos that have disabled comme
 
 ---
 
-The Addon connects to the backend at [reyoutube!](reyoutube.herokuapp.com)
+The Addon connects to the backend at [reyoutube](https://reyoutube.herokuapp.com)
 
 ## TODO
 
