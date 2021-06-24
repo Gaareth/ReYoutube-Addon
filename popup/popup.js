@@ -1,5 +1,8 @@
+var BASE_URL = "https://reyoutube.herokuapp.com"
+
+
 window.addEventListener("load", async () => {
-  let res = await fetch("http://localhost:5000/api/users/self/get_user");
+  let res = await fetch(BASE_URL + "/api/users/self/get_user");
   let user = await res.json();
   console.log(user);
   if (user.status !== 401) {

@@ -5,10 +5,8 @@ var comments_loaded_counter = 1;
 var sort_by = "rating";
 var sort_direction = "desc";
 
-//var BASE_URL = "https://reyoutube.herokuapp.com"
-var BASE_URL = "http://localhost:5000"
-
-// noinspection CssInvalidHtmlTagReference,JSUnresolvedVariable
+var BASE_URL = "https://reyoutube.herokuapp.com"
+//var BASE_URL = "http://localhost:5000"
 
 
 
@@ -174,7 +172,7 @@ function generateComment(comment, all_comments) {
 <div id="comment">
  <div id="body" class="style-scope ytd-comment-renderer">
     <div id="author-thumbnail" class="style-scope ytd-comment-renderer">
-        <a class="yt-simple-endpoint style-scope ytd-comment-renderer" href="/channel/UCSXW32J30RejvE0lR_f1ZmA">
+        <a class="yt-simple-endpoint style-scope ytd-comment-renderer" >
             <div fit="" height="40" width="40" class="style-scope ytd-comment-renderer no-transition yt-img-shadow" style="background-color: transparent;" loaded="">
                 <img id="img" class="style-scope yt-img-shadow" alt="${comment.username}" src="${comment.user.profile_picture}" width="40" height="40">
             </div>
@@ -195,7 +193,7 @@ function generateComment(comment, all_comments) {
                 </h3>
 
                 <div class="published-time-text above-comment style-scope ytd-comment-renderer" has-link-only_="">
-                    <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false" href="/watch?v=bto30zzdSN0&amp;lc=UgyC85o00XNTFMF1n0h4AaABAg" dir="auto">
+                    <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false" dir="auto">
                         ${comment.created_at[1]}
                     </a>
                 </div>
@@ -225,7 +223,7 @@ function generateComment(comment, all_comments) {
         </div>
 
         <div class="published-time-text below-comment style-scope ytd-comment-renderer" has-link-only_="" hidden="true">
-            <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false" href="/watch?v=bto30zzdSN0&amp;lc=UgyC85o00XNTFMF1n0h4AaABAg" dir="auto">
+            <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"  dir="auto">
                         ${comment.created_at[1]}
             </a>
         </div>
@@ -263,7 +261,7 @@ function generateComment(comment, all_comments) {
 
             <div comment_id="${comment.id}" hidden="" id="reply-dialog" class="style-scope ytd-comment-action-buttons-renderer" style="display: flex;">
                  <div id="author-thumbnail" class="style-scope ytd-comment-renderer">
-                    <a class="yt-simple-endpoint style-scope ytd-comment-renderer" href="/channel/UCSXW32J30RejvE0lR_f1ZmA">
+                    <a class="yt-simple-endpoint style-scope ytd-comment-renderer">
                         <div fit="" class="style-scope ytd-comment-renderer no-transition yt-img-shadow" style="background-color: transparent; width: 24px !important; height : 24px !important;" loaded="">
                             <img id="img" class="style-scope yt-img-shadow reply-img" alt="your profile picture" src="${comment.user.profile_picture}" width="24" height="24" comment_id="${comment.id}">
                         </div>
@@ -440,7 +438,7 @@ function generateHeader(all_comments) {
   let count = document.createElement("h2");
   count.id = "count";
   count.className = "style-scope ytd-comments-header-renderer";
-  count.style.color = "white";
+  count.style.color = "var(--yt-spec-text-primary)";
 
   let count_content = document.createElement("span");
   count_content.className = "style-scope yt-formatted-string";
@@ -508,7 +506,7 @@ function generateHeader(all_comments) {
     const comment_box = `
             <div id="comment-dialog" class="style-scope ytd-comment-action-buttons-renderer ytd-comment-action-buttons" style="display: flex; margin-bottom: 32px; margin-top: 24px;">
                    <div id="author-thumbnail" class="style-scope ytd-comment-renderer">
-                        <a class="yt-simple-endpoint style-scope ytd-comment-renderer" href="/channel/UCSXW32J30RejvE0lR_f1ZmA">
+                        <a class="yt-simple-endpoint style-scope ytd-comment-renderer">
                             <div fit="" class="style-scope ytd-comment-renderer no-transition yt-img-shadow" style="background-color: transparent; width: 40px !important; height : 40px !important;" loaded="">
                                 <img id="img" class="style-scope yt-img-shadow reply-img" alt="your profile picture" src="${profile_picture}" width="40" height="40" >
                             </div>
@@ -643,6 +641,6 @@ var checkExist = setInterval(function() {
       observeDOM();
       registerEventListener();
    }
-}, 100); // check every 100ms
+}, 300); // check every 100ms
 
 

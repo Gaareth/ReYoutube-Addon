@@ -2,9 +2,9 @@
 
   "manifest_version": 2,
   "name": "ReYoutube",
-  "version": "0.0",
+  "version": "1",
 
-  "description": "Ree",
+  "description": "Adds comments for youtube video that disabled commenting",
   
   "icons": {
     "50": "icons/favicon.png"
@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/*", "*://www.youtube.de/*"],
-      "js": ["showMore.min.js", "comment_interaction.js", "extension.js"],
+      "js": ["extension.js"],
       "css": ["reYoutube.css"]
     }
   ],

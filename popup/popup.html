@@ -16,7 +16,7 @@
     </div>
 
     <div class="flex-center" id="login-section">
-        <a class="btn-grad no_link_decoration" href="http://localhost:5000/login?next_action=extension"
+        <a class="btn-grad no_link_decoration" href="https://reyoutube.herokuapp.com/login?next_action=extension"
            style="padding: 10px 30px;">
             Login
         </a>
@@ -27,13 +27,11 @@
         <div style="display: flex; justify-content: end; align-items: center;">
 
             <div style="align-items: center;">
-                <span id="current_username" style="padding-right: .5rem;">{{current_user.username}}</span>
+                <span id="current_username" style="padding-right: .5rem;"></span>
             </div>
 
             <div>
-                <!-- Onerror, in case the youtube profile picture does not load use the fallback-->
-                <img alt="profile picture" class="rounded-circle" height="32" id="current_profile_picture" onerror="if (this.src != '/static/images/profile_picture_fallback.jpg'){this.src = '/static/images/profile_picture_fallback.jpg';
-}"
+                <img alt="profile picture" class="rounded-circle" height="32" id="current_profile_picture"
                      src=""
                      style="border-radius: 50% !important;"
                      width="32">
@@ -41,11 +39,8 @@
 
         </div>
 
-        <div class="flex-center" style="display: none;">
-            <h4 style="color: #3DCE65; margin-bottom: 0; margin-top: 0.75rem;">Authenticated</h4>
-        </div>
         <div class="flex-center">
-            <a href="http://localhost:5000/logout">Logout</a>
+            <a href="https://reyoutube.herokuapp.com/logout">Logout</a>
         </div>
 
     </div>
