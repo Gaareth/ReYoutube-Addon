@@ -11,7 +11,7 @@
   },
 
   "permissions": [
-    "storage","tabs","history","http://*/*","https://*/*"
+    "http://*/*","https://*/*"
   ],
 
   "browser_action": {
@@ -23,8 +23,12 @@
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/*", "*://www.youtube.de/*"],
-      "js": ["extension.js"]
+      "js": ["showMore.min.js", "comment_interaction.js", "extension.js"],
+      "css": ["reYoutube.css"]
     }
-  ]
+  ],
+  "background":{
+    "scripts": [""]
+  }
 
 } 

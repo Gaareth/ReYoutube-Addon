@@ -3,7 +3,7 @@ window.addEventListener("load", async () => {
   let user = await res.json();
   console.log(user);
   if (user.status !== 401) {
-
+    //authenticated
     document.getElementById('login-section').style.display = "none";
     document.getElementById('status-section').style.display = "block";
 
@@ -13,18 +13,5 @@ window.addEventListener("load", async () => {
   } else {
     document.getElementById('login-section').style.display = "block";
     document.getElementById('status-section').style.display = "none";
-  }
-});
-
-async function test() {
-  console.log("AHAH");
-  let res = await fetch("http://localhost:5000/api/comments/upvote_comment", {method: 'POST'});
-  let json = await res.json();
-  console.log(json)
-}
-
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("test-click")) {
-    test();
   }
 });

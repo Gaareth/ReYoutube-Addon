@@ -1,0 +1,252 @@
+#author-thumbnail.ytd-comment-renderer .yt-img-shadow.ytd-comment-renderer {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+    border-radius: 50%;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.comment-interaction {
+    width: 16px;
+    height: 16px;
+
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.comment-interaction-icon {
+    fill: #909090;
+    stroke: #909090;
+}
+
+.interacted-active {
+    fill: rgb(62, 166, 255);
+}
+
+.comment-interaction:hover  .comment-interaction-icon {
+    fill: #ffffff !important;
+}
+
+#comment {
+    margin-bottom: var(--ytd-comment-thread-margin-bottom, 16px);
+}
+
+.ytd-comment-action-buttons {
+    color: var(--yt-spec-text-secondary);
+}
+
+.comment-interaction-span {
+    margin-left: 8px;
+    margin-right: 16px !important;
+}
+
+.reply-button {
+    padding-bottom: 8px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 8px !important;
+
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+	font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.007px;
+    text-transform: uppercase;
+}
+
+.btn-nobackground {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.btn-padding {
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px
+}
+
+.btn-submit {
+    background-color: rgb(62, 166, 255);
+    color: rgb(3, 3, 3);
+}
+
+.btn-disabled {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(113, 113, 113);
+}
+
+.btn-big {
+    font-size: 14px;
+    font-weight: 500;
+    height: 37px;
+    justify-content: center;
+    letter-spacing: 0.5px;
+    line-height: normal;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    min-width: 71.96px;
+    outline-width: 0px;
+
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px;
+
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.yt-input {
+    background: 0;
+    border: 0;
+    border-bottom: 2px solid;
+    border-bottom-color: #717171;
+    color: var(--yt-spec-text-primary);
+
+    font-family: "Roboto", "Noto", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    line-height: 20px;
+    margin-bottom: 3.5px;
+    overflow-wrap: break-word;
+    padding-bottom: 3.5px;
+}
+
+.yt-input:focus {
+    outline:none;
+    border-bottom-color: #aaa;
+}
+
+
+.text-upper {
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.007px;
+    text-transform: uppercase;
+}
+
+.toolbar-error {
+    color: #dc3545;
+}
+
+#content-text {
+    word-break: break-all;
+}
+
+#more-replies {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    color: rgb(62, 166, 255);
+}
+
+#replies-content {
+    margin-top: 1rem;
+}
+
+#contents > #comment > #replies > #replies-content {
+        margin-left: 56px;
+}
+
+#replies-content > #comment > #replies > #more-replies{
+           margin-left: 39px !important;
+}
+
+#replies-content > #comment > #body > #author-thumbnail > a > div{
+    width: 24px !important;
+    height: 24px !important;
+}
+
+#replies-content > #comment > #body > #author-thumbnail > a > div > img{
+    width: 24px !important;
+    height: 24px !important;
+}
+
+
+.spinner-custom {
+  width: 25px;
+  height: 25px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
+/* DROPDOWN */
+
+.sort-btn {
+    color: var(--yt-spec-text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px gray solid;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-custom {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content-custom {
+  background-color: var(--yt-spec-brand-background-primary);
+  display: none;
+  position: absolute;
+
+  min-width: 160px;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+
+/* Links inside the dropdown */
+.dropdown-content-custom a {
+  color: var(--yt-spec-text-primary);;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content-custom a:hover {
+    background-color: var(--yt-spec-10-percent-layer);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown-custom:hover .dropdown-content-custom {
+  display: block;
+}
