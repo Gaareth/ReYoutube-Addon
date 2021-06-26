@@ -4,10 +4,10 @@
   "name": "ReYoutube",
   "version": "1",
 
-  "description": "Adds comments for youtube video that disabled commenting",
+  "description": "Adds comments for youtube videos that disabled commenting",
   
   "icons": {
-    "50": "icons/favicon.png"
+    "512": "icons/favicon.png"
   },
 
   "permissions": [
@@ -26,9 +26,6 @@
       "js": ["extension.js"],
       "css": ["reYoutube.css"]
     }
-  ],
-  "background":{
-    "scripts": [""]
-  }
+  ]
 
 } 

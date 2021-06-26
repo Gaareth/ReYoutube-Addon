@@ -16,7 +16,7 @@ function update_comment_votes(vote_info, c_id) {
 
     //console.log("comment-" + c_id + "-downvote-count")
     const downvote_element = document.getElementById("comment-" + c_id + "-downvote-count");
-    downvote_element.innerHTML = vote_info.downvotes;
+    downvote_element.textContent = vote_info.downvotes;
 
     if (vote_info.has_downvoted) {
         downvote_icon.setAttribute("class", "comment-interaction-icon interacted-active");
@@ -28,7 +28,7 @@ function update_comment_votes(vote_info, c_id) {
     const upvote_icon = document.getElementById("comment-" + c_id + "-upvote-svg");
 
     const upvote_element = document.getElementById("comment-" + c_id + "-upvote-count");
-    upvote_element.innerHTML = vote_info.upvotes;
+    upvote_element.textContent = vote_info.upvotes;
 
     if (vote_info.has_upvoted) {
         upvote_icon.setAttribute("class", "comment-interaction-icon interacted-active");
@@ -89,9 +89,28 @@ function get_comment_by_id(comments, comment_id) {
 }
 
 
-function loadComments() {
-  var sentinel = document.querySelector('#sentinel-spinner');
+function showErrorOrCreate(error) {
   var comment_error_dom = document.querySelector("#comment-error");
+
+        if (document.querySelector("#comment-error")) {
+            comment_error_dom.textContent = error;
+            return;
+        }else {
+            let errorMessage = document.createElement("div")
+            errorMessage.id = "comment-error";
+            errorMessage.className = "toolbar-error";
+            errorMessage.style = "display: flex; justify-content: center;";
+
+            errorMessage.textContent = error;
+            var comment_renderer = document.querySelector("ytd-comments > ytd-item-section-renderer");
+            comment_renderer.insertBefore(errorMessage, comment_renderer.firstChild);
+        }
+}
+
+function loadComments() {
+  var comment_error_dom = document.querySelector("#comment-error");
+
+  var sentinel = document.querySelector('#sentinel-spinner');
 
   fetch(BASE_URL + "/api/comments/get_comments/paginated/", {
     method: "POST",
@@ -104,39 +123,31 @@ function loadComments() {
     headers: {
         'Content-Type': 'application/json'
     }
+
+
   }).then((response) => {
-    response.json().then((data) => {
+        if (response.status != 200) {
+               showErrorOrCreate(response.status + ": " + response.statusText);
+        }
+
+        response.json().then((data) => {
+
         if (!data.length) {
-            sentinel.innerHTML = "No more comments";
+            sentinel.textContent = "No more comments";
             return;
         }
         sentinel.innerHTML = "Loading..";
         if (comment_error_dom) {
-            comment_error_dom.innerHTML = "";
+            comment_error_dom.textContent = "";
         }
 
         generateComments2(data, data, undefined);
-    })
+    });
+
 
   }).catch((error) => {
-
-        if (document.querySelector("#comment-error")) {
-            comment_error_dom.innerHTML = error;
-            return;
-        }else {
-            let errorMessage = document.createElement("div")
-            errorMessage.id = "comment-error";
-            errorMessage.className = "toolbar-error";
-            errorMessage.style = "display: flex; justify-content: center;";
-
-            errorMessage.innerHTML = error;
-            var comment_renderer = document.querySelector("ytd-comments > ytd-item-section-renderer");
-            comment_renderer.insertBefore(errorMessage, comment_renderer.firstChild);
-        }
-
+        showErrorOrCreate(error);
   });
-
-
 
 }
 let executeScript = async () => {
@@ -144,7 +155,7 @@ let executeScript = async () => {
     let res = await fetch(BASE_URL + "/api/comments/get_comments/" + "dQw4w9WgXcQ");
     let comments = await res.json();
 
-    document.querySelector("ytd-comments > ytd-item-section-renderer > #header").innerHTML = "";
+    document.querySelector("ytd-comments > ytd-item-section-renderer > #header").textContent = "";
     //document.querySelector("ytd-comments > ytd-item-section-renderer > #contents").innerHTML = "";
     //document.querySelector("ytd-comments > ytd-item-section-renderer > #contents").appendChild(generateComments(comments));
     generateHeader(comments);
@@ -371,9 +382,9 @@ function registerEventListener() {
                         }).then(function (res) {
                             if (!res.isError) {
                                 update_comment_votes(res, e.target.getAttribute("comment_id"));
-                                document.querySelector(`#toolbar-error-${e.target.getAttribute('comment_id')}`).innerHTML = "";
+                                document.querySelector(`#toolbar-error-${e.target.getAttribute('comment_id')}`).textContent = "";
                             }else {
-                              document.querySelector(`#toolbar-error-${e.target.getAttribute('comment_id')}`).innerHTML = res.statusText;
+                              document.querySelector(`#toolbar-error-${e.target.getAttribute('comment_id')}`).textContent = res.statusText;
                             }
                         });
                   }else if(e.target.id == 'reply-cancel') {
@@ -396,7 +407,7 @@ function registerEventListener() {
                             if (!res.isError && res.statusCode == 200) {
                                 addReply(res.comment, e.target.getAttribute("comment_id"));
                             }else {
-                              document.querySelector(`#toolbar-error-${e.target.getAttribute('comment_id')}`).innerHTML = res.statusText;
+                              document.querySelector(`#toolbar-error-${e.target.getAttribute('comment_id')}`).textContent = res.statusText;
                             }
                         });
                   }else if(e.target.classList.contains('reply-button')) {
@@ -420,11 +431,11 @@ function registerEventListener() {
                         if (replies_content.hasAttribute("hidden")) {
                             //show replies
                             replies_content.removeAttribute("hidden");
-                            show_replies_button.innerHTML = `Hide ${replies_content.children.length} replies`
+                            show_replies_button.textContent = `Hide ${replies_content.children.length} replies`
 
                         } else {
                             replies_content.setAttributeNode(document.createAttribute('hidden'));
-                            show_replies_button.innerHTML = `View ${replies_content.children.length} replies`
+                            show_replies_button.textContent = `View ${replies_content.children.length} replies`
                         }
                   }
              }
@@ -442,12 +453,12 @@ function generateHeader(all_comments) {
 
   let count_content = document.createElement("span");
   count_content.className = "style-scope yt-formatted-string";
-  count_content.innerHTML = all_comments.length;
+  count_content.textContent = all_comments.length;
   count_content.style = "padding-right: 0.5rem;";
 
   let count_content_label = document.createElement("span");
   count_content_label.className = "style-scope yt-formatted-string";
-  count_content_label.innerHTML = "Comments";
+  count_content_label.textContent = "Comments";
 
   count.appendChild(count_content);
   count.appendChild(count_content_label);
@@ -456,7 +467,7 @@ function generateHeader(all_comments) {
   sort_option_wrapper.className = "dropdown-custom";
 
     let sort_option = document.createElement("button");
-    sort_option.innerHTML = "Sort By";
+    sort_option.textContent = "Sort By";
     sort_option.className = "sort-btn btn-nobackground btn-big";
 
     let sort_option_dropdown = document.createElement("div");
@@ -567,10 +578,10 @@ function generateHeader(all_comments) {
                     comments.insertBefore(self_comments, comments.firstChild);
 
                     self_comments.innerHTML = generateComment(res.comment, all_comments);
-                    document.querySelector("#toolbar-error-submit").innerHTML = "";
+                    document.querySelector("#toolbar-error-submit").textContent = "";
                     document.querySelector("#comment-input").value = "";
                 }else {
-                  document.querySelector("#toolbar-error-submit").innerHTML = res.statusText;
+                  document.querySelector("#toolbar-error-submit").textContent = res.statusText;
                 }
             });
     });

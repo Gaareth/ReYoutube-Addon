@@ -10,7 +10,7 @@ window.addEventListener("load", async () => {
     document.getElementById('login-section').style.display = "none";
     document.getElementById('status-section').style.display = "block";
 
-    document.getElementById('current_username').innerHTML = user["username"];
+    document.getElementById('current_username').textContent = user["username"];
     document.getElementById('current_profile_picture').src = user["profile_picture"];
 
   } else {
